@@ -1,0 +1,149 @@
+// Place all the styles related to the Schedule controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+
+.vl {
+  display: flex;
+  flex-direction: column;
+}
+
+.hl {
+  display: flex;
+  flex-direction: row;
+}
+
+.button {
+  padding: 0.5em 0.75em;
+  background-color: #3b8ada;
+  color: #fff;
+  cursor: pointer;
+  text-decoration: none;
+  text-align: center;
+  border-radius: 5px;
+  &:not(:last-of-type) {
+    margin-bottom: 5px;
+  }
+  &.secondary {
+    background-color: #b9d7f5;
+    color: #000;
+  }
+}
+
+a {
+  font-size: inherit;
+  font-family: inherit;
+  color:inherit;
+}
+
+ul, ol {
+  list-style-type: circle;
+  padding-inline-start: 25px;
+}
+
+// TODO: mejor manera de añadir / ocultar footer
+
+@media (max-device-width: 700px) {
+  .hide-in-mobile {
+    display: none;
+  }
+  section.schedule-section {
+    padding-bottom: 0px;
+  }
+}
+
+$footer-size: 32px;
+
+.footer {
+  position: absolute;
+  bottom: 0;
+  height: $footer-size;
+  width: 100%;
+  background-color: #101010;
+  color: #888;
+  padding: 10px 0;
+  text-align: center;
+}
+
+.schedule-section {
+  background: #b2efef;
+  background: linear-gradient(184deg, #b2efef 0%, #9bd9f4 100%);
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-bottom: $footer-size;
+  & .schedule-card {
+    @extend .vl;
+    height: max-content;
+    width: max-content;
+    max-width: 700px;
+    padding: 1rem;
+    padding-bottom: $footer-size;
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: 2px 2px 2px 1px #0002;
+    & h1, h2, p {
+      text-align: center;
+    }
+    & .inputs {
+      @extend .hl;
+      margin: 20px 5px;
+      & input {
+        width: 100%;
+        text-align: center;
+        border: 2px solid #dbdbdb;
+        &:not(:last-of-type) {
+          margin-right: 8px;
+        }
+      }
+    }
+    & table {
+      width: 100%;
+      margin: 15px 0;
+      text-align: center;
+      table-layout: fixed;
+      border-collapse: collapse;
+      & td {
+        border: 1px solid #dbdbdb;
+      }
+      & div {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 2px 6px;
+        height: 25px;
+        text-align: center;
+        word-wrap: none;
+        overflow: hidden;
+        &:not(:last-child) {
+          margin-bottom: 2px;
+        }
+      }
+      & div.assis {
+        background-color: #99CC99;
+      }
+      & div.class {
+        background-color: #FBC575;
+      }
+      & div.lab {
+        background-color: #B3D4F5;
+      }
+      & div.workshop {
+        background-color: #C7C2F8;
+      }
+      & div.field {
+        background-color: #FFCCFF;
+      }
+      & div.practice {
+        background-color: #CCCC99;
+      }
+      & div.tesis {
+        background-color: #B2EFEF;
+      }
+      & div.other {
+        background-color: #FF9999;
+      }
+    }
+  }
+}

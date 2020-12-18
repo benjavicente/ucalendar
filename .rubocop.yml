@@ -1,0 +1,26 @@
+
+# require:
+#   - rubocop-rails
+
+AllCops:
+  NewCops: enable
+  TargetRubyVersion: 2.7.2
+  Exclude:
+    - 'bin/**/*'
+    - 'node_modules/**/*'
+    - 'db/schema.rb'
+
+Style/AsciiComments:
+  Enabled: false
+Style/CommentedKeyword:
+  Enabled: false
+Style/Documentation:
+  Enabled: false
+Layout/EndOfLine:
+  EnforcedStyle: lf
+Metrics/AbcSize:
+  Max: 21
+Metrics/ClassLength:
+  Max: 120
+Metrics/MethodLength:
+  Max: 25

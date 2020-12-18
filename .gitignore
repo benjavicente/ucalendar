@@ -1,0 +1,28 @@
+# Keep dir files
+!/**/.keep
+
+# Editor
+.vscode/*
+
+# Ignore all logfiles and tempfiles
+/log/*
+/tmp/*
+
+# Secrets and env variables
+/config/master.key
+.env
+
+# Node & js
+/public/assets
+/public/packs
+/public/packs-test
+/node_modules
+/yarn-error.log
+yarn-debug.log*
+.yarn-integrity
+
+# Storage
+/storage/*
+
+# Test files
+.rspec

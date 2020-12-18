@@ -1,0 +1,11 @@
+es:
+  with: con
+  download_schedule: Descargar horario
+  schedule: Horario
+  courses: Cursos
+  course_form_instrucions: Busca cursos por Código-Sección
+  support:
+    array:
+      words_connector: ", "
+      two_words_connector: " y "
+      last_word_connector: " y "

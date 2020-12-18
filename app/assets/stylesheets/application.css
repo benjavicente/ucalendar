@@ -1,0 +1,25 @@
+/*
+ * Main Application
+ *
+ *= require schedule
+ */
+
+* {
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
+}
+
+body{
+  height: max-content;
+  min-height: 100vh;
+}
+
+html,
+body,
+h1,
+h2,
+h3,
+p {
+  margin: 0;
+  padding: 0;
+}
