@@ -5,5 +5,5 @@ class ScheduleEvent < ApplicationRecord
   belongs_to :schedule
 
   DAYS = (0..5).to_a.freeze
-  MODULES = (0..6).to_a.freeze
+  MODULES = (0..7).to_a.freeze
 end
