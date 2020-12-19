@@ -2,6 +2,7 @@
 
 require_relative '../lib/expandable_event'
 require_relative '../lib/erb_template'
+require_relative '../lib/date_time'
 
 # Horario
 class Schedule < ApplicationRecord
@@ -39,8 +40,9 @@ class Schedule < ApplicationRecord
   end
 
   def expand_events_horizontaly
+    @last_events_of = {}
     ScheduleEvent::DAYS.each do |day|
-      @last_event = nil
+      @last_events_of.clear
       ScheduleEvent::MODULES.each do |mod|
         try_to_expand_event day, mod
       end
@@ -48,8 +50,9 @@ class Schedule < ApplicationRecord
   end
 
   def expand_events_verticaly
+    @last_events_of = {}
     ScheduleEvent::MODULES.each do |mod|
-      @last_event = nil
+      @last_events_of.clear
       ScheduleEvent::DAYS.each do |day|
         try_to_expand_event day, mod
       end
@@ -60,10 +63,10 @@ class Schedule < ApplicationRecord
     @expandable_events.each do |event|
       next unless event.in?(day, mod)
 
-      if @last_event.nil?
-        @last_event = event
-      elsif @last_event.category == event.category && @last_event.classroom == event.classroom
-        @last_event << event
+      if @last_events_of[event.category].nil?
+        @last_events_of[event.category] = event
+      elsif @last_events_of.key?(event.category) && @last_events_of[event.category].classroom == event.classroom
+        @last_events_of[event.category] << event
         @expandable_events.delete event
       end
     end
@@ -72,10 +75,13 @@ class Schedule < ApplicationRecord
   def create_icalendar_events
     @expandable_events.map do |event|
       # Info
+      fist_day = course.term.first_day
       until_date = course.term.last_day
       days = event.days.map { |e| ICALENDAR_DAYS[e] }.join(',')
-      event_start = course.term.first_day.to_datetime.change(MODULES_TIME[event.modules.min])
-      event_end = course.term.first_day.to_datetime.change(MODULES_TIME[event.modules.max])
+      event_start = fist_day.to_datetime.change(MODULES_TIME[event.modules.min])
+      event_start = event_start.change_to_next_wday(event.days.max_by { |d| (fist_day.day - d - 2) % 7 } + 1)
+      event_end = fist_day.to_datetime.change(MODULES_TIME[event.modules.max])
+      event_end = event_end.change_to_next_wday(event.days.max_by { |d| (fist_day.day - d - 2) % 7 } + 1)
       # Calendar
       icalendar_event = Icalendar::Event.new
       icalendar_event.summary = ErbTemplate.new('event/summary').render(binding)
