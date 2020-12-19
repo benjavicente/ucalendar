@@ -4,8 +4,31 @@ es:
   schedule: Horario
   courses: Cursos
   course_form_instrucions: Busca cursos por Código-Sección
+  date:
+    day_names: ["Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado"]
   support:
     array:
       words_connector: ", "
       two_words_connector: " y "
       last_word_connector: " y "
+  activerecord:
+    attributes:
+      schedule_event:
+        categories:
+          class: "Clase"
+          assis: "Ayudantía"
+          lab: "Laboratorio"
+          workshop: "Taller"
+          field: "Terreno"
+          practice: "Práctica"
+          tesis: "Tesis"
+          other: "Otro"
+          short_name:
+            class: "Clas"
+            assis: "Ayd"
+            lab: "Lab"
+            workshop: "Tal"
+            field: "Ter"
+            practice: "Prac"
+            tesis: "Tesis"
+            other: "Otro"
