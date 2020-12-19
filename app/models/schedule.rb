@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require_relative '../lib/expandable_event'
+require_relative '../lib/erb_template'
 
 # Horario
 class Schedule < ApplicationRecord
@@ -69,7 +70,6 @@ class Schedule < ApplicationRecord
   end
 
   def create_icalendar_events
-    # %Y%m%dT%H%M
     @expandable_events.map do |event|
       # Info
       until_date = course.term.last_day
@@ -78,8 +78,9 @@ class Schedule < ApplicationRecord
       event_end = course.term.first_day.to_datetime.change(MODULES_TIME[event.modules.max])
       # Calendar
       icalendar_event = Icalendar::Event.new
-      icalendar_event.summary = "#{course} - #{event.category}"
-      icalendar_event.description = "#{course.subject.name}\nprofes:"
+      icalendar_event.summary = ErbTemplate.new('event/summary').render(binding)
+      icalendar_event.description = ErbTemplate.new('event/description').render(binding)
+      icalendar_event.location = event.classroom unless event.classroom.nil?
       icalendar_event.dtstart = event_start
       icalendar_event.dtend = event_end + MODULE_LENGH
       exdates = Holiday.all.filter_map do |holiday|
