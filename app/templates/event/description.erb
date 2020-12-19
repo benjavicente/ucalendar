@@ -1,4 +1,5 @@
 <%= ScheduleEvent.human_enum_name(:category, event.category) %> <%= course.subject.name %>
+<%= "Sección #{course.section}" %>
 <%= "#{event.classroom} " unless event.classroom.nil? %><%= course.campus.name %>
 
 <% unless course.teachers.empty? -%>
