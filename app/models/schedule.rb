@@ -37,27 +37,23 @@ class Schedule < ApplicationRecord
     end
   end
 
-  # TODO: usar un enum para lo que se itera en la expanción
-
   def expand_events_horizontaly
-    (1..5).each do |day|
+    ScheduleEvent::DAYS.each do |day|
       @last_event = nil
-      (1..8).each do |mod|
+      ScheduleEvent::MODULES.each do |mod|
         try_to_expand_event day, mod
       end
     end
   end
 
   def expand_events_verticaly
-    (1..8).each do |mod|
+    ScheduleEvent::MODULES.each do |mod|
       @last_event = nil
-      (1..5).each do |day|
+      ScheduleEvent::DAYS.each do |day|
         try_to_expand_event day, mod
       end
     end
   end
-
-  # TODO: mat1630-1 falla?
 
   def try_to_expand_event(day, mod)
     @expandable_events.each do |event|
