@@ -1,7 +1,8 @@
 es:
   with: con
   download_schedule: Descargar horario
-  schedule: Horario
+  schedule: "Horario %{year}-%{period}" 
+  period_not_found: "Periodo no encontrado %{year}-%{period}"
   courses: Cursos
   course_form_instrucions: Busca cursos por Código-Sección
   date:

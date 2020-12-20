@@ -11,6 +11,7 @@ class ScheduleController < ApplicationController
   def show
     respond_to do |format|
       format.html
+      # TODO: format.xml { render partial: 'schedule_table.html' }
       if @courses.empty?
         format.ics { head :no_content }
       else

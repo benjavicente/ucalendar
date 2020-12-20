@@ -1,73 +1,46 @@
 <%= tag.section class: 'schedule-section' do -%>
   <%= tag.div class: 'schedule-card' do -%>
+
     <% if @term.nil? %>
-      <%= tag.p "No existe o se ha creado el periodo buscado (#{params[:year]}-#{params[:period]})" %>
-    <% end %>
+        <%= tag.h1 t('period_not_found', year: params[:year], period: params[:period]) -%>
+    <% else %>
+      <%= tag.div class: 'tittle-box' do -%>
+        <%= tag.h1 t('schedule', year: @term.year, period: @term.period) -%>
+        <%= tag.p t('course_form_instrucions') -%>
+      <% end %>
 
-    <%= tag.div do %>
-      <%= tag.h1 t('schedule') %>
-      <%= tag.p @term %>
-      <hr>
-    <% end %>
-
-    <% unless @term.nil? %>
-      <%= tag.p t('course_form_instrucions') %>
-      <%# TODO: ajax y datalist de sugerencias %>
-      <%= tag.form class: 'inputs', action: schedule_url, method: :get do %>
+      <%= tag.form class: 'inputs', action: schedule_url, method: :get do -%>
         <% 6.times do %>
-          <%= tag.input name: 'cs[]', type: 'text', pattern: '[\w\d]{5,8}-\d+|\d{6}'  %>
+          <%= tag.input name: 'cs[]', type: 'text', pattern: '[\w\d]{5,8}-\d+|\d{6}', maxlength: 12 -%>
         <% end %>
-        <%= tag.input type: 'submit' %>
+        <%= tag.input type: 'submit' -%>
       <% end %>
-    <% end %>
 
-    <%= tag.table do %>
-      <%= tag.thead do %>
-        <%= tag.tr do %>
-          <%= tag.td style: 'width:10px' %>
-          <% %w[L M W J V S].each do |d| %>
-            <%= tag.td(d) %>
+      <%= tag.div class: 'schedule_table' do -%>
+        <%= render partial: 'schedule_table'-%>
+      <% end %>
+
+      <% unless @courses.empty? %>
+        <%= tag.h2 t('courses') %>
+        <%= tag.ul class: 'courses-list' do %>
+          <% @courses.each do |c| %>
+            <%= tag.li "#{c} | #{c.subject.name} #{I18n.t('with')} #{c.teachers.each.map(&:name).to_sentence}"%>
           <% end %>
         <% end %>
+        <%= link_to t('download_schedule'), schedule_url(@term.year, @term.period, :ics, params: request.query_parameters), class: 'button hide-in-mobile' -%>
+        <%= link_to t('buscacursos'), buscacursos_url(@courses, @term), class: 'button secondary' -%>
+        <%=  @buscacursos_url -%>
       <% end %>
-      <%= tag.tbody do -%>
-        <% (1..8).each_with_index do |mod, i_mod| %>
-          <%= tag.tr do -%>
-            <%= tag.td(mod) -%>
-            <% %w[L M W J V S].each_with_index do |day, i_day| %>
-              <%= tag.td(id: [day, mod].join) do %>
-                <% @courses.each do |course| %>
-                  <% course.schedule.schedule_events.each do |event| %>
-                    <% if i_mod == event.module && i_day == event.day %>
-                      <%= tag.div course, class: event.category -%>
-                    <% end %>
-                  <% end %>
-                <% end %>
-              <% end %>
-            <% end %>
-          <% end %>
-        <% end %>
-      <% end %>
-    <% end %>
 
-    <% unless @courses.empty? %>
-      <%= tag.h2 t('courses') %>
-      <%= tag.ul do %>
-        <% @courses.each do |c| %>
-          <%= tag.li "#{c} | #{c.subject.name} #{I18n.t('with')} #{c.teachers.each.map(&:name).to_sentence}"%>
-        <% end %>
-      <% end %>
-      <%= link_to t('download_schedule'), schedule_url(@term.year, @term.period, :ics, params: request.query_parameters), class: 'button hide-in-mobile' -%>
-      <%= link_to t('buscacursos'), buscacursos_url(@courses, @term), class: 'button secondary' -%>
-      <%=  @buscacursos_url -%>
     <% end %>
   <% end %>
 <% end %>
 
+<!--
 <%= tag.footer class: 'hide-in-mobile footer' do -%>
   <%= tag.p style: 'font-family:monospace' do %>
     <%= "desarrollado con <3 por" %>
     <a href="https://benjavicente.github.io/" taget="_blank">benjavicente</a>
   <% end %>
 <% end %>
-
+-->
