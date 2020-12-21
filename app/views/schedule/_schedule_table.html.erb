@@ -1,0 +1,28 @@
+<%= tag.table do %>
+    <%= tag.thead do %>
+        <%= tag.tr do %>
+            <%= tag.td %>
+            <% %w[L M W J V S].each do |d| %>
+                <%= tag.td(d) %>
+            <% end %>
+        <% end %>
+    <% end %>
+    <%= tag.tbody do -%>
+        <% (1..8).each_with_index do |mod, i_mod| %>
+        <%= tag.tr do -%>
+            <%= tag.td(mod) -%>
+            <% %w[L M W J V S].each_with_index do |day, i_day| %>
+            <%= tag.td(id: [day, mod].join) do %>
+                <% @courses.each do |course| %>
+                <% course.schedule.schedule_events.each do |event| %>
+                    <% if i_mod == event.module && i_day == event.day %>
+                    <%= tag.div course, class: event.category -%>
+                    <% end %>
+                <% end %>
+                <% end %>
+            <% end %>
+            <% end %>
+        <% end %>
+        <% end %>
+    <% end %>
+<% end %>
