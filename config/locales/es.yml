@@ -1,4 +1,5 @@
 es:
+  page_description: Obtiene el horario de los cursos y guardalos en tu calendario.
   with: con
   download_schedule: Descargar horario
   schedule: "Horario %{year}-%{period}" 
