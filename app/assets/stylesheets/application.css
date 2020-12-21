@@ -1,6 +1,6 @@
 /*
- * Main Application
- *
+  Main Application
+
  *= require schedule
  */
 
@@ -22,4 +22,38 @@ h3,
 p {
   margin: 0;
   padding: 0;
+}
+
+a {
+  font-size: inherit;
+  font-family: inherit;
+  color:inherit;
+}
+
+ul, ol {
+  list-style-type: circle;
+  padding-inline-start: 25px;
+}
+
+
+@media (max-device-width: 700px) {
+  .hide-in-mobile {
+    display: none;
+  }
+}
+
+/* https://github.com/tholman/github-corners */
+.github-corner:hover .octo-arm {
+  animation: octocat-wave 560ms ease-in-out
+}
+@keyframes octocat-wave{
+  0%, 100% {
+    transform: rotate(0)
+  }
+  20%, 60% {
+    transform: rotate(-25deg)
+  }
+  40%, 80% {
+    transform: rotate(10deg)
+  }
 }

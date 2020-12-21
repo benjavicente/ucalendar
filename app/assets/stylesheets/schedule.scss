@@ -25,23 +25,9 @@
   }
 }
 
-a {
-  font-size: inherit;
-  font-family: inherit;
-  color:inherit;
-}
-
-ul, ol {
-  list-style-type: circle;
-  padding-inline-start: 25px;
-}
-
 // Para dispositivos móviles
 
 @media (max-device-width: 700px) {
-  .hide-in-mobile {
-    display: none;
-  }
   section.schedule-section {
     & .schedule-card {
       & .inputs {
