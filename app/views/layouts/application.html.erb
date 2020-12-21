@@ -10,7 +10,7 @@
     <meta property="og:type" content="website">
     <%= tag.meta property: 'og:url', content: request.host -%>
     <%= tag.meta property: 'og:description', content: yield(:description).empty? ? t('page_description') : yield(:description) -%>
-    <%# TODO <meta property="og:image" content="" /> %>
+    <%= tag.meta property: 'og:image', content: asset_path('logo.png') %>
     <!-- TL -->
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>

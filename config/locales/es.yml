@@ -1,6 +1,7 @@
 es:
   page_description: Obtiene el horario de los cursos y guardalos en tu calendario.
   with: con
+  schedule_of: "Horario de %{subjects_names}"
   download_schedule: Descargar horario
   schedule: "Horario %{year}-%{period}" 
   period_not_found: "Periodo no encontrado %{year}-%{period}"

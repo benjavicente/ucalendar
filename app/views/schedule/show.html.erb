@@ -4,7 +4,7 @@
     <% if @term.nil? %>
         <%= tag.h1 t('period_not_found', year: params[:year], period: params[:period]) -%>
     <% else %>
-      <% provide :description, @courses.map(&:subject).map(&:name).to_sentence %>
+      <% provide :description, t('schedule_of', subjects_names: @courses.map(&:subject).map(&:name).to_sentence) %>
 
       <%= tag.div class: 'tittle-box' do -%>
         <%= tag.h1 t('schedule', year: @term.year, period: @term.period) -%>
