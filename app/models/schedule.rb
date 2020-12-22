@@ -62,12 +62,14 @@ class Schedule < ApplicationRecord
   def try_to_expand_event(day, mod)
     @expandable_events.each do |event|
       next unless event.in?(day, mod)
-
       if @last_events_of[event.category].nil?
         @last_events_of[event.category] = event
-      elsif @last_events_of.key?(event.category) && @last_events_of[event.category].classroom == event.classroom
-        @last_events_of[event.category] << event
-        @expandable_events.delete event
+      else
+        last_event = @last_events_of[event.category]
+        if last_event != event && last_event.classroom == event.classroom
+          @last_events_of[event.category] << event
+          @expandable_events.delete event
+        end
       end
     end
   end
