@@ -25,6 +25,23 @@
   }
 }
 
+
+// Estilo bulma
+select {
+  border-color: red;
+  &::after {
+    border: 0 2px 0 3px solid transparent;
+    content: " ";
+    height: .625em;
+    width: .625em;
+    top: 50%;
+    margin-top: -.4375em;
+    transform: rotate(-45deg);
+    position: absolute;
+    transform-origin: center;
+  }
+}
+
 // Para dispositivos móviles
 
 @media (max-device-width: 700px) {
@@ -69,8 +86,13 @@
     background-color: #fdfdfd;
     border-radius: 5px;
     box-shadow: 3px 3px 6px 3px #0002;
-    & h1, h2, p {
+    h1, h2, p {
       text-align: center;
+      select {
+        border: none;
+        font-size: inherit;
+        font-weight: inherit;
+      }
     }
     & .tittle-box {
       margin: 15px 0;

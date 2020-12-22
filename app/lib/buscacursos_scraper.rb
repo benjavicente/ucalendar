@@ -63,7 +63,6 @@ class BuscacursosScraper
 
   # Similar a get_exams, pero obtiene el url de la página con los cursos
   def get_schedule_url(courses_sections, period, year)
-    period = 3 if period.to_sym == :tav
     "http://buscacursos.uc.cl/?semestre=#{year}-#{period}&cursos=#{courses_sections.join(',')}"
   end
 

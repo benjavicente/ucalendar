@@ -11,7 +11,16 @@ class ScheduleController < ApplicationController
   def show
     respond_to do |format|
       format.html
-      format.xml { render partial: 'schedule_table_and_links.html' }
+      # XML (AJAX)
+      if @term.nil?
+        format.xml do
+          response = "<h1>#{t('period_not_found', year: params[:year], period: params[:period])}</h1>"
+          render inline: response, status: :not_found
+        end
+      else
+        format.xml { render partial: 'schedule_table_and_links.html' }
+      end
+      # ICS
       if @courses.empty?
         format.ics { head :no_content }
       else
@@ -96,7 +105,7 @@ class ScheduleController < ApplicationController
   ).freeze
 
   def obtain_missing_course(**hash)
-    results = BuscacursosScraper.instance.get_courses(year: @term.year, period: @term.period, **hash)
+    results = BuscacursosScraper.instance.get_courses(year: @term.year, period: @term.period_int, **hash)
     results.each do |r|
       create_course_from_result(r) unless @term.courses.exists?(nrc: r[:nrc])
     end

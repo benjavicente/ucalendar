@@ -1,3 +1,4 @@
+<div class='vl'>
 <%= tag.table do %>
     <%= tag.thead do %>
         <%= tag.tr do %>
@@ -12,7 +13,7 @@
         <%= tag.tr do -%>
             <%= tag.td(mod) -%>
             <% %w[L M W J V S].each_with_index do |day, i_day| %>
-            <%= tag.td(id: [day, mod].join) do %>
+            <%= tag.td(id: [day, mod].join) do -%>
                 <% @courses.each do |course| %>
                 <% course.schedule.schedule_events.each do |event| %>
                     <% if i_mod == event.module && i_day == event.day %>
@@ -26,7 +27,6 @@
         <% end %>
     <% end %>
 <% end %>
-
 <% unless @courses.empty? %>
     <%= tag.h2 t('courses') %>
     <%= tag.ul class: 'courses-list' do %>
@@ -38,3 +38,4 @@
     <%= link_to t('buscacursos'), buscacursos_url(@courses, @term), class: 'button secondary' -%>
     <%=  @buscacursos_url -%>
 <% end %>
+</div>

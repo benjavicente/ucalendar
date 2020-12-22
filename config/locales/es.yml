@@ -3,10 +3,10 @@ es:
   with: con
   schedule_of: "Horario de %{subjects_names}"
   download_schedule: Descargar horario
-  schedule: "Horario %{year}-%{period}" 
+  schedule: "Horario" 
   period_not_found: "Periodo no encontrado %{year}-%{period}"
   courses: Cursos
-  course_form_instrucions: Busca cursos por Código-Sección
+  course_form_instrucions: Busca cursos por Código-Sección o por NRC
   date:
     day_names: ["Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado"]
   support:
