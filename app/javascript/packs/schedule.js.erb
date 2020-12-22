@@ -1,12 +1,14 @@
 // Gloabales
 var inputs, schedule_table_and_links, params, term_field, yaer, period
 
+<% if ENV['GH-PAGES'] %>
+var host = 'http://ucalendar.herokuapp.com'
+<% else %>
 var host = window.location.origin
-console.log(host)
+<% end %>
 
 const schedule_request = new XMLHttpRequest()
 schedule_request.addEventListener("load", scheduleLoaded)
-
 
 function getTarget(year, period, format="") {
   return new URL ([host, "term", year || 0, period || 0, "schedule"].join("/") + (format ? `.${format}` : ""))
@@ -15,10 +17,12 @@ function getTarget(year, period, format="") {
 function scheduleLoaded(_event) {
   // Cabia la tabla
   schedule_table_and_links.innerHTML = schedule_request.response
+  <% unless ENV['GH-PAGES'] %>
   // Cambiar URL
   var t = getTarget(year, period)
   t.search = params.toString()
   window.history.replaceState({}, '', t.toString())
+  <% end %>
 }
 
 function sendScheduleRequest() {
@@ -52,8 +56,6 @@ document.addEventListener("DOMContentLoaded", function() {
   var search_params = []
   decodeURI(window.location.search).slice(1).split('&').forEach(function(element) {
     var [key, value] = element.split("=")
-    console.log(key, value)
-    console.log(element)
     if ( (key === "cs[]" && /[\w\d]{5,8}-\d+/.test(value)) || (key === "ncr[]" && /\d{5,6}/.test(value)) ) {
       search_params.push(value)
     }
@@ -70,5 +72,6 @@ document.addEventListener("DOMContentLoaded", function() {
     }
     input_element.addEventListener('change', onInputChange)
   })
+  console.log("ready!")
 })
 
