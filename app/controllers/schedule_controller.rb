@@ -11,7 +11,7 @@ class ScheduleController < ApplicationController
   def show
     respond_to do |format|
       format.html
-      # TODO: format.xml { render partial: 'schedule_table.html' }
+      format.xml { render partial: 'schedule_table_and_links.html' }
       if @courses.empty?
         format.ics { head :no_content }
       else
@@ -25,7 +25,7 @@ class ScheduleController < ApplicationController
     period = params[:period] || (DateTime.now.advance(months: 1).month / 12 + 1)
     ncr = params[:nrc].is_a?(Array) ? params[:nrc] : params[:nrc]&.split(',')
     cs = params[:cs].is_a?(Array) ? params[:cs] : params[:cs]&.split(',')
-    redirect_to schedule_path(year, period, nrc: ncr, cs: cs)
+    redirect_to schedule_path(year, period, nrc: ncr, cs: cs, format: params[:format])
   end
 
   private

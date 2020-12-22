@@ -12,26 +12,16 @@
       <% end %>
 
       <%= tag.form class: 'inputs', action: schedule_url, method: :get do -%>
-        <% 6.times do %>
-          <%= tag.input name: 'cs[]', type: 'text', pattern: '[\w\d]{5,8}-\d+|\d{6}', maxlength: 12 -%>
+        <% 6.times.zip (params[:nrc] || []) + (params[:cs] || []) do |i, param| %>
+          <%= tag.input name: 'cs[]', type: 'text', value: param, pattern: '[\w\d]{5,8}-\d+|\d{5,6}', maxlength: 12 -%>
         <% end %>
-        <%= tag.input type: 'submit' -%>
+        <noscript>
+          <%= tag.input type: 'submit' -%>
+        </noscript>
       <% end %>
 
-      <%= tag.div class: 'schedule_table' do -%>
-        <%= render partial: 'schedule_table'-%>
-      <% end %>
-
-      <% unless @courses.empty? %>
-        <%= tag.h2 t('courses') %>
-        <%= tag.ul class: 'courses-list' do %>
-          <% @courses.each do |c| %>
-            <%= tag.li "#{c} | #{c.subject.name} #{I18n.t('with')} #{c.teachers.each.map(&:name).to_sentence}"%>
-          <% end %>
-        <% end %>
-        <%= link_to t('download_schedule'), schedule_url(@term.year, @term.period, :ics, params: request.query_parameters), class: 'button hide-in-mobile' -%>
-        <%= link_to t('buscacursos'), buscacursos_url(@courses, @term), class: 'button secondary' -%>
-        <%=  @buscacursos_url -%>
+      <%= tag.div id: 'schedule_table_and_links', class: 'vl' do -%>
+        <%= render partial: 'schedule_table_and_links'-%>
       <% end %>
 
     <% end %>
