@@ -3,7 +3,7 @@ namespace :"gh-pages" do
     ENV['GH-PAGES'] = '1'
     JS_FILE_NAME = 'schedule.js'
     CSS_FILE_NAME = 'schedule.css'
-    DEPLOY_HOST = 'https://ucalendar.herokuapp.com'
+    DEPLOY_HOST = 'ucalendar.herokuapp.com'
 
     sprockets = Sprockets::Environment.new(Rails.root) do |env|
       env.append_path 'app/assets/stylesheets/'
@@ -20,7 +20,7 @@ namespace :"gh-pages" do
     JS = sprockets['schedule.js'].to_s
     # HTML
     # app/templates/gh-pages.html.erb
-    renderer = ApplicationController.renderer.new http_host: DEPLOY_HOST
+    renderer = ApplicationController.renderer.new http_host: DEPLOY_HOST, https: true
     html_template = ErbTemplate.new('gh-pages.html')
     HTML_BODY = renderer.render template: 'schedule/show', layout: false, assigns: { courses: [] }
 
