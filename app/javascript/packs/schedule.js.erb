@@ -38,9 +38,10 @@ function sendScheduleRequest() {
       params_values.push(`nrc[]=${value}`)
     }
   })
+  var target = getTarget(year, period, 'xml')
   params = "?" + params_values.join("&")
-  target.search = params
-  schedule_request.open("GET", getTarget(year, period, 'xml'))
+  target.search = params_values.join("&")
+  schedule_request.open("GET", target)
   schedule_request.send()
 }
 
