@@ -1,9 +1,6 @@
 # Keep dir files
 !/**/.keep
 
-# Editor
-.vscode/*
-
 # Ignore all logfiles and tempfiles
 /log/*
 /tmp/*

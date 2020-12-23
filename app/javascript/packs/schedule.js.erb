@@ -1,29 +1,29 @@
 // Gloabales
 var inputs, schedule_table_and_links, params, term_field, yaer, period
 
-//! <% if ENV['GH-PAGES'] %>
+//% <% if ENV['GH-PAGES'] %>
 var host = 'https://ucalendar.herokuapp.com'
-//! <% else %>
+//% <% else %>
 var host = window.location.origin
-//! <% end %>
+//% <% end %>
 
 const schedule_request = new XMLHttpRequest()
 schedule_request.addEventListener("load", scheduleLoaded)
 
 function getTarget(year, period, format="") {
-  return new URL ([host, "term", year || 0, period || 0, "schedule"].join("/") + (format ? `.${format}` : ""))
+  return new URL([host, "term", year || 0, period || 0, "schedule"].join("/") + (format ? `.${format}` : ""))
 }
 
 function scheduleLoaded(_event) {
   // Cabia la tabla
   schedule_table_and_links.innerHTML = schedule_request.response
 
-  //! <% unless ENV['GH-PAGES'] %>
+  //% <% unless ENV['GH-PAGES'] %>
   // Cambiar URL
   var t = getTarget(year, period)
   t.search = params.toString()
   window.history.replaceState({}, '', t.toString())
-  //! <% end %>
+  //% <% end %>
 
 }
 
@@ -52,11 +52,12 @@ function onInputChange(event) {
   }
 }
 
-const term_request = new XMLHttpRequest()
+
 document.addEventListener("DOMContentLoaded", function() {
 
-  //! <% if ENV['GH-PAGES'] %>
+  //% <% if ENV['GH-PAGES'] %>
   // Se buscan cuales son los periodos disponibles
+  const term_request = new XMLHttpRequest()
   term_request.open("GET", host + "/terms.json")
   term_request.addEventListener("load", function() {
     var terms = JSON.parse(term_request.response)
@@ -77,7 +78,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
   // Se ve si tiene parámetrso validos y se hace la request inmediatamente
   var has_valid_params = false
-  //! <% end %>
+  //% <% end %>
 
   // Obtiene los parámetros en orden
   var search_params = []
@@ -86,9 +87,9 @@ document.addEventListener("DOMContentLoaded", function() {
     var [key, value] = element.split("=")
     if ( (key === "cs[]" && /[\w\d]{5,8}-\d+/.test(value)) || (key === "ncr[]" && /\d{5,6}/.test(value)) ) {
       search_params.push(value)
-      //! <% if ENV['GH-PAGES'] %>
+      //% <% if ENV['GH-PAGES'] %>
       has_valid_params = true
-      //! <% end %>
+      //% <% end %>
     }
   })
 
@@ -106,13 +107,13 @@ document.addEventListener("DOMContentLoaded", function() {
     input_element.addEventListener('change', onInputChange)
   })
 
-  console.log("ready!")
-
-  //! <% if ENV['GH-PAGES'] %>
+  //% <% if ENV['GH-PAGES'] %>
   if (has_valid_params) {
     sendScheduleRequest()
   }
-  //! <% end %>
+  //% <% end %>
+
+  console.log("ready!")
 
 })
 
