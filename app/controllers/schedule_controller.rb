@@ -11,7 +11,16 @@ class ScheduleController < ApplicationController
   def show
     respond_to do |format|
       format.html
-      # TODO: format.xml { render partial: 'schedule_table.html' }
+      # XML (AJAX)
+      if @term.nil?
+        format.xml do
+          response = "<h1>#{t('period_not_found', year: params[:year], period: params[:period])}</h1>"
+          render inline: response, status: :not_found
+        end
+      else
+        format.xml { render partial: 'schedule_table_and_links.html' }
+      end
+      # ICS
       if @courses.empty?
         format.ics { head :no_content }
       else
@@ -20,12 +29,12 @@ class ScheduleController < ApplicationController
     end
   end
 
-  def show_short
+  def show_short # rubocop:disable Metrics/AbcSize
     year = params[:year] || DateTime.now.advance(months: 1).year
     period = params[:period] || (DateTime.now.advance(months: 1).month / 12 + 1)
     ncr = params[:nrc].is_a?(Array) ? params[:nrc] : params[:nrc]&.split(',')
     cs = params[:cs].is_a?(Array) ? params[:cs] : params[:cs]&.split(',')
-    redirect_to schedule_path(year, period, nrc: ncr, cs: cs)
+    redirect_to schedule_path(year, period, nrc: ncr, cs: cs, format: params[:format])
   end
 
   private
@@ -96,7 +105,7 @@ class ScheduleController < ApplicationController
   ).freeze
 
   def obtain_missing_course(**hash)
-    results = BuscacursosScraper.instance.get_courses(year: @term.year, period: @term.period, **hash)
+    results = BuscacursosScraper.instance.get_courses(year: @term.year, period: @term.period_int, **hash)
     results.each do |r|
       create_course_from_result(r) unless @term.courses.exists?(nrc: r[:nrc])
     end

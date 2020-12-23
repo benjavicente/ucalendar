@@ -1,39 +1,32 @@
+<% unless @term.nil? %>
+  <% provide :description, t('schedule_of', subjects_names: @courses.map(&:subject).map(&:name).to_sentence) %>
+<% end %>
+
 <%= tag.section class: 'schedule-section' do -%>
   <%= tag.div class: 'schedule-card' do -%>
 
-    <% if @term.nil? %>
-        <%= tag.h1 t('period_not_found', year: params[:year], period: params[:period]) -%>
-    <% else %>
-      <% provide :description, t('schedule_of', subjects_names: @courses.map(&:subject).map(&:name).to_sentence) %>
-
-      <%= tag.div class: 'tittle-box' do -%>
-        <%= tag.h1 t('schedule', year: @term.year, period: @term.period) -%>
-        <%= tag.p t('course_form_instrucions') -%>
+    <%= tag.div class: 'tittle-box' do -%>
+      <%= tag.h1 do -%>
+        <%= t('schedule') -%>
+        <%= select_tag :period, options_from_collection_for_select(Term.all, :to_s, :to_s, @term) -%>
       <% end %>
-
-      <%= tag.form class: 'inputs', action: schedule_url, method: :get do -%>
-        <% 6.times do %>
-          <%= tag.input name: 'cs[]', type: 'text', pattern: '[\w\d]{5,8}-\d+|\d{6}', maxlength: 12 -%>
-        <% end %>
-        <%= tag.input type: 'submit' -%>
-      <% end %>
-
-      <%= tag.div class: 'schedule_table' do -%>
-        <%= render partial: 'schedule_table'-%>
-      <% end %>
-
-      <% unless @courses.empty? %>
-        <%= tag.h2 t('courses') %>
-        <%= tag.ul class: 'courses-list' do %>
-          <% @courses.each do |c| %>
-            <%= tag.li "#{c} | #{c.subject.name} #{I18n.t('with')} #{c.teachers.each.map(&:name).to_sentence}"%>
-          <% end %>
-        <% end %>
-        <%= link_to t('download_schedule'), schedule_url(@term.year, @term.period, :ics, params: request.query_parameters), class: 'button hide-in-mobile' -%>
-        <%= link_to t('buscacursos'), buscacursos_url(@courses, @term), class: 'button secondary' -%>
-        <%=  @buscacursos_url -%>
-      <% end %>
-
+      <%= tag.p t('course_form_instrucions') -%>
     <% end %>
+
+    <%= tag.form class: 'inputs', action: schedule_short_url, method: :get do -%>
+      <% 6.times do  %>
+        <%= tag.input name: 'cs[]', type: 'text', pattern: '[\w\d]{5,8}-\d+|\d{5,6}', maxlength: 12 -%>
+      <% end %>
+      <noscript>
+        <%= tag.input type: 'submit' -%>
+      </noscript>
+    <% end %>
+
+    <%= tag.div id: 'schedule_table_and_links', class: 'vl' do -%>
+      <%= render partial: 'schedule/schedule_table_and_links'-%>
+    <% end %>
+
   <% end %>
 <% end %>
+
+<%= render partial: 'github_corner' %>

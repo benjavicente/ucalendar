@@ -4,6 +4,6 @@ require_relative '../lib/buscacursos_scraper'
 
 module ScheduleHelper
   def buscacursos_url(courses, term)
-    BuscacursosScraper.instance.get_schedule_url(courses.map(&:to_s), term.period, term.year)
+    BuscacursosScraper.instance.get_schedule_url(courses.map(&:to_s), term.period_int, term.year)
   end
 end

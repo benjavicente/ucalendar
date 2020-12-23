@@ -65,9 +65,12 @@ class Schedule < ApplicationRecord
 
       if @last_events_of[event.category].nil?
         @last_events_of[event.category] = event
-      elsif @last_events_of.key?(event.category) && @last_events_of[event.category].classroom == event.classroom
-        @last_events_of[event.category] << event
-        @expandable_events.delete event
+      else
+        last_event = @last_events_of[event.category]
+        if last_event != event && last_event.classroom == event.classroom
+          @last_events_of[event.category] << event
+          @expandable_events.delete event
+        end
       end
     end
   end
@@ -90,8 +93,8 @@ class Schedule < ApplicationRecord
       icalendar_event.dtstart = event_start
       icalendar_event.dtend = event_end + MODULE_LENGH
       exdates = Holiday.all.filter_map do |holiday|
-        holiday.change(year: course.term.first_day.year) if holiday.every_yeat
-        course.term.first_day < holiday.day && holiday.day < course.term.last_day ? holiday.day : nil
+        hday = holiday.every_yeat ? holiday.day.change(year: course.term.first_day.year) : holiday.day
+        course.term.first_day < hday && hday < course.term.last_day ? hday : nil
       end
       icalendar_event.exdate = exdates
       icalendar_event.rrule = "FREQ=WEEKLY;INTERVAL=1;BYDAY=#{days};UNTIL=#{until_date.strftime('%Y%m%d')}Z"

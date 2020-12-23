@@ -1,0 +1,12 @@
+{
+  "files.associations": {
+    "*.js.erb": "javascript"
+  },
+  "better-comments.tags": [
+    {
+      "tag": "%",
+      "color": "#ff3207",
+      "bold": true
+    }
+  ]
+}
