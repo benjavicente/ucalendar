@@ -3,35 +3,26 @@ namespace :"gh-pages" do
     ENV['GH-PAGES'] = '1'
     JS_FILE_NAME = 'schedule.js'
     CSS_FILE_NAME = 'schedule.css'
-    DEPLOY_HOST = 'ucalendar.herokuapp.com'
+    DEPLOY_HOST = 'https://ucalendar.herokuapp.com'
 
     sprockets = Sprockets::Environment.new(Rails.root) do |env|
       env.append_path 'app/assets/stylesheets/'
       env.append_path 'app/javascript/packs/'
       env.css_compressor = :sass
-      # env.js_compressor = :uglify
+      env.js_compressor = Uglifier.new(harmony: true)
     end
 
     file_writers = []
 
     # CSS
-    css_asset = sprockets.find_asset('application.css')
-    file_writers << Proc.new do
-      css_asset.write_to(CSS_FILE_NAME)
-    end
+    CSS = sprockets['application.css'].to_s
     # JS
-    js_asset = sprockets.find_asset('schedule.js')
-    file_writers << Proc.new do
-      file_writers << js_asset.write_to(JS_FILE_NAME)
-    end
+    JS = sprockets['schedule.js'].to_s
     # HTML
     # app/templates/gh-pages.html.erb
     renderer = ApplicationController.renderer.new http_host: DEPLOY_HOST
-    HTML_BODY = renderer.render template: 'schedule/show', layout: false, assigns: { courses: [] }
     html_template = ErbTemplate.new('gh-pages.html')
-    file_writers << Proc.new do
-      File.write('index.html', html_template.render(binding))
-    end
+    HTML_BODY = renderer.render template: 'schedule/show', layout: false, assigns: { courses: [] }
 
     # Git
     DIR = Dir.mktmpdir
@@ -40,7 +31,7 @@ namespace :"gh-pages" do
       `git rm . -r`
       `git branch -D gh-pages`
       `git checkout --orphan gh-pages`
-      file_writers.each { |e| e&.call }
+      IO.write('index.html', html_template.render(binding))  # HTML_BODY, SCC y JS son usados
       `git add -A`
       `git commit -m 'update'`
     end
@@ -51,5 +42,7 @@ namespace :"gh-pages" do
     puts `git ls-tree gh-pages`
     puts
     puts `git status`
+    puts
+    puts 'Use git push origin gh-pages -f to update the page'
   end
 end

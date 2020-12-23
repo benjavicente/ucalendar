@@ -8,7 +8,7 @@
     <%= tag.div class: 'tittle-box' do -%>
       <%= tag.h1 do -%>
         <%= t('schedule') -%>
-        <%= select_tag :period, options_from_collection_for_select(Term.order(year: :desc, period: :asc), :to_s, :to_s, @term) -%>
+        <%= select_tag :period, options_from_collection_for_select(Term.all, :to_s, :to_s, @term) -%>
       <% end %>
       <%= tag.p t('course_form_instrucions') -%>
     <% end %>

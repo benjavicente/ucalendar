@@ -1,41 +1,41 @@
 <div class='vl'>
-<%= tag.table do %>
-    <%= tag.thead do %>
-        <%= tag.tr do %>
-            <%= tag.td %>
-            <% %w[L M W J V S].each do |d| %>
-                <%= tag.td(d) %>
-            <% end %>
-        <% end %>
+<%= tag.table do -%>
+  <%= tag.thead do -%>
+    <%= tag.tr do -%>
+      <%= tag.td %>
+      <% %w[L M W J V S].each do |d| %>
+        <%= tag.td(d) -%>
+      <% end %>
     <% end %>
-    <%= tag.tbody do -%>
-        <% (1..8).each_with_index do |mod, i_mod| %>
-        <%= tag.tr do -%>
-            <%= tag.td(mod) -%>
-            <% %w[L M W J V S].each_with_index do |day, i_day| %>
-            <%= tag.td(id: [day, mod].join) do -%>
-                <% @courses.each do |course| %>
-                <% course.schedule.schedule_events.each do |event| %>
-                    <% if i_mod == event.module && i_day == event.day %>
-                    <%= tag.div course, class: event.category -%>
-                    <% end %>
+  <% end %>
+  <%= tag.tbody do -%>
+    <% (1..8).each_with_index do |mod, i_mod| %>
+      <%= tag.tr do -%>
+        <%= tag.td(mod) -%>
+          <% %w[L M W J V S].each_with_index do |day, i_day| %>
+          <%= tag.td(id: [day, mod].join) do -%>
+            <% @courses.each do |course| %>
+              <% course.schedule.schedule_events.each do |event| %>
+                <% if i_mod == event.module && i_day == event.day %>
+                  <%= tag.div course, class: event.category -%>
                 <% end %>
-                <% end %>
+              <% end %>
             <% end %>
-            <% end %>
+          <% end %>
         <% end %>
-        <% end %>
+      <% end %>
     <% end %>
+  <% end %>
 <% end %>
 <% unless @courses.empty? %>
-    <%= tag.h2 t('courses') %>
-    <%= tag.ul class: 'courses-list' do %>
-        <% @courses.each do |c| %>
-        <%= tag.li "#{c} | #{c.subject.name} #{I18n.t('with')} #{c.teachers.each.map(&:name).to_sentence}"%>
-        <% end %>
+  <%= tag.h2 t('courses') -%>
+  <%= tag.ul class: 'courses-list' do -%>
+    <% @courses.each do |c| %>
+    <%= tag.li "#{c} | #{c.subject.name} #{I18n.t('with')} #{c.teachers.each.map(&:name).to_sentence}" -%>
     <% end %>
-    <%= link_to t('download_schedule'), schedule_url(@term.year, @term.period, :ics, params: request.query_parameters), class: 'button hide-in-mobile' -%>
-    <%= link_to t('buscacursos'), buscacursos_url(@courses, @term), class: 'button secondary' -%>
-    <%=  @buscacursos_url -%>
+  <% end %>
+  <%= link_to t('download_schedule'), schedule_url(@term.year, @term.period, :ics, params: request.query_parameters), class: 'button hide-in-mobile' -%>
+  <%= link_to t('buscacursos'), buscacursos_url(@courses, @term), class: 'button secondary' -%>
+  <%=  @buscacursos_url -%>
 <% end %>
 </div>
