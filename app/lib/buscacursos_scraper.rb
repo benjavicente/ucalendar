@@ -142,7 +142,7 @@ class BuscacursosScraper
     modules_items = []
     module_table.elements.each do |mod_row|
       mod_data, type, classroom = mod_row.elements.map(&:content).map(&:strip)
-      classroom = /sin sala|por asignar/i.match?(classroom) ? classroom : nil
+      classroom = /sin sala|por asignar/i.match?(classroom) ? nil : classroom
       module_product(mod_data).each do |m|
         modules_items << MODULE_COLS_NAMES.zip([m, type, classroom]).to_h
       end
