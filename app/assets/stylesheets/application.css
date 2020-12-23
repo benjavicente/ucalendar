@@ -35,6 +35,10 @@ ul, ol {
   padding-inline-start: 25px;
 }
 
+input {
+  min-width: 0;
+}
+
 
 @media (max-device-width: 700px) {
   .hide-in-mobile {
