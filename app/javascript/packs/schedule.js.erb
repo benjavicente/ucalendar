@@ -1,4 +1,4 @@
-// Gloabales
+// Globales
 var inputs, schedule_table_and_links, params, term_field, year, period
 
 //% <% if ENV['GH-PAGES'] %>
@@ -19,7 +19,7 @@ function scheduleLoaded(_event) {
   schedule_table_and_links.innerHTML = schedule_request.response
 
   //% <% unless ENV['GH-PAGES'] %>
-  // Cambiar URL
+  // Cambiar URI
   var t = getTarget(year, period)
   t.search = params.toString()
   window.history.replaceState({}, '', t.toString())
@@ -95,7 +95,7 @@ document.addEventListener("DOMContentLoaded", function() {
     }
   })
 
-  // Añade el se4lector de semestre
+  // Añade el selector de semestre
   term_field = document.getElementById('period')
   term_field.addEventListener('change', onInputChange)
 
@@ -110,6 +110,7 @@ document.addEventListener("DOMContentLoaded", function() {
   })
 
   //% <% if ENV['GH-PAGES'] %>
+  // Se manda una request inicial, ya que el html no tiene inicialmente el horario
   if (has_valid_params) {
     sendScheduleRequest()
   }
