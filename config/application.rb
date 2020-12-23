@@ -24,9 +24,5 @@ module Ucalendar
     config.load_defaults 6.1
     config.i18n.default_locale = :es
     config.generators.system_tests = nil
-    config.action_dispatch.default_headers.merge!({
-      'Access-Control-Allow-Origin' => '*',
-      'Access-Control-Request-Method' => '*'
-    })
   end
 end

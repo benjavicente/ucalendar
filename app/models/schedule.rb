@@ -62,6 +62,7 @@ class Schedule < ApplicationRecord
   def try_to_expand_event(day, mod)
     @expandable_events.each do |event|
       next unless event.in?(day, mod)
+
       if @last_events_of[event.category].nil?
         @last_events_of[event.category] = event
       else
@@ -92,7 +93,7 @@ class Schedule < ApplicationRecord
       icalendar_event.dtstart = event_start
       icalendar_event.dtend = event_end + MODULE_LENGH
       exdates = Holiday.all.filter_map do |holiday|
-        holiday.change(year: course.term.first_day.year) if holiday.every_yeat
+        holiday.day.change(year: course.term.first_day.year) if holiday.every_yeat
         course.term.first_day < holiday.day && holiday.day < course.term.last_day ? holiday.day : nil
       end
       icalendar_event.exdate = exdates

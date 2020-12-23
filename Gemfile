@@ -82,5 +82,5 @@ group :development do
   gem 'rubocop-rails'
   gem 'rubocop-rspec'
   # GitHub Pages task
-  gem 'uglifier' 
+  gem 'uglifier'
 end

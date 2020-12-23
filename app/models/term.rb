@@ -3,7 +3,7 @@
 # Periodo de clases
 class Term < ApplicationRecord
   enum period: %i[tav 1 2] # TODO: tav debería ser 3 en el enum
-  default_scope { order(year: :desc, period: :asc) } 
+  default_scope { order(year: :desc, period: :asc) }
 
   has_many :courses, dependent: :destroy
 
