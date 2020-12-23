@@ -1,5 +1,5 @@
 // Gloabales
-var inputs, schedule_table_and_links, params, term_field, yaer, period
+var inputs, schedule_table_and_links, params, term_field, year, period
 
 //% <% if ENV['GH-PAGES'] %>
 var host = 'https://ucalendar.herokuapp.com'
@@ -38,6 +38,9 @@ function sendScheduleRequest() {
       params_values.push(`nrc[]=${value}`)
     }
   })
+  var data = term_field.value.split('-')
+  year = data[0]
+  period = data[1]
   var target = getTarget(year, period, 'xml')
   params = "?" + params_values.join("&")
   target.search = params_values.join("&")
@@ -46,7 +49,6 @@ function sendScheduleRequest() {
 }
 
 function onInputChange(event) {
-  [year, period] = term_field.value.split('-')
   if (event.target.checkValidity()) {
     sendScheduleRequest()
   }

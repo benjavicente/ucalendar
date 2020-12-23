@@ -1,6 +1,6 @@
 {
   "files.associations": {
-    "*.js.erb": "js"
+    "*.js.erb": "javascript"
   },
   "better-comments.tags": [
     {
