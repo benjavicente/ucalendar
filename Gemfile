@@ -51,6 +51,9 @@ gem 'nokogiri'
 gem 'date'
 gem 'icalendar'
 
+# CORS Middleware
+gem 'rack-cors'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
@@ -78,4 +81,6 @@ group :development do
   gem 'rubocop-performance'
   gem 'rubocop-rails'
   gem 'rubocop-rspec'
+  # GitHub Pages task
+  gem 'uglifier' 
 end
