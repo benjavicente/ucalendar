@@ -79,7 +79,7 @@ ActiveRecord::Schema.define(version: 2020_12_16_004221) do
     t.datetime "updated_at", precision: 6, null: false
     t.date "day", null: false
     t.string "name", null: false
-    t.boolean "every_yeat", default: false, null: false
+    t.boolean "every_year", default: false, null: false
   end
 
   create_table "schedule_events", force: :cascade do |t|
@@ -104,7 +104,7 @@ ActiveRecord::Schema.define(version: 2020_12_16_004221) do
     t.string "code", null: false
     t.string "name", null: false
     t.integer "credits"
-    t.string "fr_area"
+    t.string "fg_area"
     t.string "category"
     t.index ["code"], name: "index_subjects_on_code", unique: true
   end

@@ -1,4 +1,4 @@
-<% unless @term.nil? %>
+<% unless @term.nil? || @courses.empty? %>
   <% provide :description, t('schedule_of', subjects_names: @courses.map(&:subject).map(&:name).to_sentence) %>
 <% end %>
 

@@ -86,6 +86,9 @@ class ScheduleController < ApplicationController
         calendar.add_event(event)
       end
     end
+    calendar.prodid = 'benjavicente/ucalendar'
+    calendar.append_custom_property('X-WR-CALNAME', I18n.t('schedule'))
+    calendar.append_custom_property('X-WR-TIMEZONE', 'America/Santiago')
     calendar.to_ical
   end
 
