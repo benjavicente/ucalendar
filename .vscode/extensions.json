@@ -1,0 +1,7 @@
+{
+  "recommendations": [
+    "misogi.ruby-rubocop",
+    "castwide.solargraph",
+    "aaron-bond.better-comments"
+  ]
+}

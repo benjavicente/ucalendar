@@ -2,7 +2,8 @@
 
 # Periodo de clases
 class Term < ApplicationRecord
-  enum period: %i[tav 1 2]
+  enum period: %i[1 2 tav]
+  default_scope { order(year: :desc, period: :desc) }
 
   has_many :courses, dependent: :destroy
 
@@ -12,5 +13,9 @@ class Term < ApplicationRecord
 
   def display_name
     "#{year}-#{period}"
+  end
+
+  def period_int
+    period == 'tav' ? 3 : period
   end
 end

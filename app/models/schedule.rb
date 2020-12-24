@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 require_relative '../lib/expandable_event'
+require_relative '../lib/erb_template'
+require_relative '../lib/date_time'
 
 # Horario
 class Schedule < ApplicationRecord
@@ -37,58 +39,63 @@ class Schedule < ApplicationRecord
     end
   end
 
-  # TODO: usar un enum para lo que se itera en la expanción
-
   def expand_events_horizontaly
-    (1..5).each do |day|
-      @last_event = nil
-      (1..8).each do |mod|
+    @last_events_of = {}
+    ScheduleEvent::DAYS.each do |day|
+      @last_events_of.clear
+      ScheduleEvent::MODULES.each do |mod|
         try_to_expand_event day, mod
       end
     end
   end
 
   def expand_events_verticaly
-    (1..8).each do |mod|
-      @last_event = nil
-      (1..5).each do |day|
+    @last_events_of = {}
+    ScheduleEvent::MODULES.each do |mod|
+      @last_events_of.clear
+      ScheduleEvent::DAYS.each do |day|
         try_to_expand_event day, mod
       end
     end
   end
 
-  # TODO: mat1630-1 falla?
-
   def try_to_expand_event(day, mod)
     @expandable_events.each do |event|
       next unless event.in?(day, mod)
 
-      if @last_event.nil?
-        @last_event = event
-      elsif @last_event.category == event.category && @last_event.classroom == event.classroom
-        @last_event << event
-        @expandable_events.delete event
+      if @last_events_of[event.category].nil?
+        @last_events_of[event.category] = event
+      else
+        last_event = @last_events_of[event.category]
+        if last_event != event && last_event.classroom == event.classroom
+          @last_events_of[event.category] << event
+          @expandable_events.delete event
+        end
       end
     end
   end
 
   def create_icalendar_events
-    # %Y%m%dT%H%M
     @expandable_events.map do |event|
       # Info
-      until_date = course.term.last_day
+      fist_day = course.term.first_day
+      until_date = course.term.last_day.advance(days: 1)
       days = event.days.map { |e| ICALENDAR_DAYS[e] }.join(',')
-      event_start = course.term.first_day.to_datetime.change(MODULES_TIME[event.modules.min])
-      event_end = course.term.first_day.to_datetime.change(MODULES_TIME[event.modules.max])
+      event_start = fist_day.to_datetime.change(MODULES_TIME[event.modules.min])
+      event_start = event_start.change_wday(event.days.max_by { |d| (fist_day.day - d - 2) % 7 } + 1)
+      event_end = fist_day.to_datetime.change(MODULES_TIME[event.modules.max])
+      event_end = event_end.change_wday(event.days.max_by { |d| (fist_day.day - d - 2) % 7 } + 1)
       # Calendar
       icalendar_event = Icalendar::Event.new
-      icalendar_event.summary = "#{course} - #{event.category}"
-      icalendar_event.description = "#{course.subject.name}\nprofes:"
+      icalendar_event.summary = ErbTemplate.new('event/summary').render(binding)
+      icalendar_event.description = ErbTemplate.new('event/description').render(binding)
+      icalendar_event.location = event.classroom unless event.classroom.nil?
       icalendar_event.dtstart = event_start
       icalendar_event.dtend = event_end + MODULE_LENGH
       exdates = Holiday.all.filter_map do |holiday|
-        holiday.change(year: course.term.first_day.year) if holiday.every_yeat
-        course.term.first_day < holiday.day && holiday.day < course.term.last_day ? holiday.day : nil
+        hday = holiday.every_year ? holiday.day.change(year: course.term.first_day.year) : holiday.day
+        hday = hday.to_datetime.change(hour: event_start.hour, min: event_start.min)
+        course.term.first_day < hday && hday < course.term.last_day ? hday : nil
       end
       icalendar_event.exdate = exdates
       icalendar_event.rrule = "FREQ=WEEKLY;INTERVAL=1;BYDAY=#{days};UNTIL=#{until_date.strftime('%Y%m%d')}Z"

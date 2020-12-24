@@ -1,0 +1,14 @@
+<%= ScheduleEvent.human_enum_name(:category, event.category) %> <%= course.subject.name %>
+<%= "Sección #{course.section}" %>
+<%= "#{event.classroom} " unless event.classroom.nil? %><%= course.campus.name %>
+
+<% unless course.teachers.empty? -%>
+  Profesores
+  <% course.teachers.each do |teacher| -%>
+    - <%= teacher.name %>
+  <% end -%>
+<% end -%>
+
+<% event.days.each do |d| -%>
+  <%= I18n.t('date.day_names')[d + 1] %>
+<% end -%>

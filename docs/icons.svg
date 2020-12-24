@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   width="123.80331mm"
+   height="95.695549mm"
+   viewBox="0 0 123.80331 95.695549"
+   version="1.1"
+   id="svg8">
+  <defs
+     id="defs2">
+    <linearGradient
+       id="linearGradient1404">
+      <stop
+         style="stop-color:#88f0f0;stop-opacity:1"
+         offset="0"
+         id="stop1400" />
+      <stop
+         style="stop-color:#5ab3ce;stop-opacity:0.99313509"
+         offset="1"
+         id="stop1402" />
+    </linearGradient>
+    <linearGradient
+       xlink:href="#linearGradient1404"
+       id="linearGradient1406"
+       x1="34.281475"
+       y1="114.23172"
+       x2="91.710861"
+       y2="125.10975"
+       gradientUnits="userSpaceOnUse" />
+    <linearGradient
+       gradientUnits="userSpaceOnUse"
+       y2="125.10975"
+       x2="91.710861"
+       y1="114.23172"
+       x1="34.281475"
+       id="linearGradient1406-1"
+       xlink:href="#linearGradient1404"
+       gradientTransform="matrix(0.71818627,0,0,1.4811979,84.275336,-55.820087)" />
+  </defs>
+  <metadata
+     id="metadata5">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     id="layer1"
+     transform="translate(-29.524243,-55.694778)">
+    <path
+       d="m 110.7472,112.95645 h 36.16094 c 1.29836,0 2.34359,1.37707 2.34359,3.08759 v 27.08476 c 0,1.71052 -1.04523,3.08759 -2.34359,3.08759 H 110.7472 c -1.29835,0 -2.3436,-1.37707 -2.3436,-3.08759 v -27.08476 c 0,-1.71052 1.04525,-3.08759 2.3436,-3.08759 z"
+       style="opacity:0.999;fill:#f9f9f9;stroke:#000000;stroke-width:3.55164;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:2.3;stroke-opacity:1"
+       id="rect16-8-5-5-0-9" />
+    <path
+       d="m 108.56174,125.94292 -0.005,-9.16778 c 0,-2.63787 1.02968,-4.76151 2.3087,-4.76151 h 35.62259 c 1.27902,0 2.3085,2.12364 2.3087,4.76151 l 7.2e-4,9.15415 z"
+       style="fill:url(#linearGradient1406-1);fill-opacity:1;stroke:none;stroke-width:4.44374;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="path841-8-5" />
+    <path
+       id="rect16-8-5-5-0"
+       style="opacity:0.999;fill:none;stroke:#000000;stroke-width:3.55164;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:2.3;stroke-opacity:1"
+       d="m 110.7472,112.95645 h 36.16094 c 1.29836,0 2.34359,1.37707 2.34359,3.08759 v 27.08476 c 0,1.71052 -1.04523,3.08759 -2.34359,3.08759 H 110.7472 c -1.29835,0 -2.3436,-1.37707 -2.3436,-3.08759 v -27.08476 c 0,-1.71052 1.04525,-3.08759 2.3436,-3.08759 z" />
+    <path
+       d="M 36.859325,113.15801 H 87.20969 c 1.80782,0 3.26321,1.4554 3.26321,3.26322 v 28.62537 c 0,1.80781 -1.45539,3.26321 -3.26321,3.26321 H 36.859325 c -1.807819,0 -3.263212,-1.4554 -3.263212,-3.26321 v -28.62537 c 0,-1.80782 1.455393,-3.26322 3.263212,-3.26322 z"
+       style="opacity:0.999;fill:#f9f9f9;stroke:#000000;stroke-width:1.56104;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:2.3;stroke-opacity:1"
+       id="rect16-8-5-5" />
+    <path
+       id="path841-8"
+       style="fill:url(#linearGradient1406);fill-opacity:1;stroke:none;stroke-width:1.5378;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 33.816305,122.71352 -0.0073,-6.18944 c 0,-1.7809 1.433724,-3.21463 3.214636,-3.21463 h 49.60075 c 1.78091,0 3.21435,1.43373 3.21463,3.21463 l 9.5e-4,6.18024 z" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:11.0338px;line-height:1.25;font-family:Roboto;-inkscape-font-specification:'Roboto, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;letter-spacing:0px;stroke-width:0.275845"
+       x="34.959141"
+       y="90.829338"
+       id="text12"><tspan
+         id="tspan10"
+         x="34.959141"
+         y="90.829338"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:11.0338px;font-family:Roboto;-inkscape-font-specification:'Roboto, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:0.275845">UCalendar</tspan></text>
+    <rect
+       style="opacity:0.999;fill:none;stroke:#000000;stroke-width:1.56104;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:2.3;stroke-opacity:1"
+       id="rect16"
+       width="56.876785"
+       height="35.151787"
+       x="32.604763"
+       y="64.822922"
+       ry="3.263212" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1.56104;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="M 32.836684,74.366815 H 89.249628"
+       id="path841" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1.56104;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="M 45.357143,64.822916 V 58.775298"
+       id="path843" />
+    <path
+       id="path843-0"
+       d="M 76.729166,64.822916 V 58.775298"
+       style="fill:none;stroke:#000000;stroke-width:1.56104;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:11.0338px;line-height:1.25;font-family:Roboto;-inkscape-font-specification:'Roboto, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;letter-spacing:0px;stroke-width:0.275844"
+       x="35.950493"
+       y="139.16446"
+       id="text12-4-8"><tspan
+         id="tspan10-3-8"
+         x="35.950493"
+         y="139.16446"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:11.0338px;font-family:Roboto;-inkscape-font-specification:'Roboto, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:0.275844"><tspan
+           style="fill:#0065cc;fill-opacity:1"
+           id="tspan1410">UC</tspan><tspan
+           style="fill:#fecd24;fill-opacity:1"
+           id="tspan1408">alendar</tspan></tspan></text>
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1.56104;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="M 33.828036,122.7019 H 90.240981"
+       id="path841-8-1" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1.56104;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 46.348491,113.15801 v -6.04762"
+       id="path843-2-9" />
+    <path
+       id="path843-0-5-8"
+       d="m 77.720521,113.15801 v -6.04762"
+       style="fill:none;stroke:#000000;stroke-width:1.56104;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+    <path
+       id="rect16-8-5"
+       style="opacity:0.999;fill:none;stroke:#000000;stroke-width:1.56104;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:2.3;stroke-opacity:1"
+       d="m 36.859325,113.15801 h 50.350366 c 1.80782,0 3.26321,1.4554 3.26321,3.26322 v 28.62536 c 0,1.80782 -1.45539,3.26321 -3.26321,3.26321 H 36.859325 c -1.807819,0 -3.263212,-1.45539 -3.263212,-3.26321 v -28.62536 c 0,-1.80782 1.455393,-3.26322 3.263212,-3.26322 z" />
+    <path
+       id="path841-8-1-8"
+       d="m 108.57017,126.42993 h 40.51501"
+       style="fill:none;stroke:#000000;stroke-width:3.65125;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+    <path
+       id="path843-2-9-0"
+       d="m 117.56218,111.48646 v -6.04762"
+       style="fill:none;stroke:#000000;stroke-width:3.65125;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:3.65125;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 140.09315,111.48646 v -6.04762"
+       id="path843-0-5-8-7" />
+  </g>
+</svg>
