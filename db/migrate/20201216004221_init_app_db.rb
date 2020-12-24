@@ -6,7 +6,7 @@ class InitAppDb < ActiveRecord::Migration[6.1]
       t.timestamps
       t.date    :day, null: false
       t.string  :name, null: false
-      t.boolean :every_yeat, default: false, null: false
+      t.boolean :every_year, default: false, null: false
     end
 
     create_table :teachers do |t|
@@ -37,7 +37,7 @@ class InitAppDb < ActiveRecord::Migration[6.1]
       t.string     :code, null: false
       t.string     :name, null: false
       t.integer    :credits
-      t.string     :fr_area
+      t.string     :fg_area
       t.string     :category
     end
     add_index :subjects, :code, unique: true

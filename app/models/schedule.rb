@@ -82,9 +82,9 @@ class Schedule < ApplicationRecord
       until_date = course.term.last_day.advance(days: 1)
       days = event.days.map { |e| ICALENDAR_DAYS[e] }.join(',')
       event_start = fist_day.to_datetime.change(MODULES_TIME[event.modules.min])
-      event_start = event_start.change_to_next_wday(event.days.max_by { |d| (fist_day.day - d - 2) % 7 } + 1)
+      event_start = event_start.change_wday(event.days.max_by { |d| (fist_day.day - d - 2) % 7 } + 1)
       event_end = fist_day.to_datetime.change(MODULES_TIME[event.modules.max])
-      event_end = event_end.change_to_next_wday(event.days.max_by { |d| (fist_day.day - d - 2) % 7 } + 1)
+      event_end = event_end.change_wday(event.days.max_by { |d| (fist_day.day - d - 2) % 7 } + 1)
       # Calendar
       icalendar_event = Icalendar::Event.new
       icalendar_event.summary = ErbTemplate.new('event/summary').render(binding)
@@ -93,7 +93,7 @@ class Schedule < ApplicationRecord
       icalendar_event.dtstart = event_start
       icalendar_event.dtend = event_end + MODULE_LENGH
       exdates = Holiday.all.filter_map do |holiday|
-        hday = holiday.every_yeat ? holiday.day.change(year: course.term.first_day.year) : holiday.day
+        hday = holiday.every_year ? holiday.day.change(year: course.term.first_day.year) : holiday.day
         hday = hday.to_datetime.change(hour: event_start.hour, min: event_start.min)
         course.term.first_day < hday && hday < course.term.last_day ? hday : nil
       end

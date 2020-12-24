@@ -1,12 +1,12 @@
 es:
-  page_description: Obtiene el horario de los cursos y guardalos en tu calendario.
-  with: con
-  schedule_of: "Horario de %{subjects_names}"
-  download_schedule: Descargar horario
-  schedule: "Horario" 
-  period_not_found: "Periodo no encontrado %{year}-%{period}"
-  courses: Cursos
   course_form_instrucions: Busca cursos por Código-Sección o por NRC
+  courses: Cursos
+  download_schedule: Descargar horario
+  page_description: Obtiene el horario de los cursos y guardalos en tu calendario.
+  period_not_found: "Periodo no encontrado %{year}-%{period}"
+  schedule_of: "Horario de %{subjects_names}"
+  schedule: Horario
+  with: con
   date:
     day_names: ["Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado"]
   support:
@@ -14,18 +14,67 @@ es:
       words_connector: ", "
       two_words_connector: " y "
       last_word_connector: " y "
+  # Rails Active Record
+  # https://guides.rubyonrails.org/i18n.html#translations-for-active-record-models
+  attributes:
+    year: Año
+    period: Periodo
+    fist_day: Primer día
+    last_day: Último día
+    academic_unit: Unidad académica
+    campus: Campus
+    course: Curso
+    category: Categoria
+    created_at: Creado en
+    name: Nombre
+    day: Día
+    schedule: Horario
+    every_year: Cada año
+    subject: Ramo
+    teacher: Profesor
+    term: Semestre académico
+    updated_at: Actualizado en
+    classroom: Sala
+    module: Módulo
   activerecord:
+    models:
+      academic_unit: Unidad académica
+      campus: Campus
+      course: Curso
+      exam: Prueba
+      holiday: Feriado
+      schedule_event:
+        one: Módulo de un curso
+        other: Módulos de cursos
+      schedule: Horario
+      subject: Ramo
+      teacher: Profesor
+      term: Semestre académico
+      user: Usuario
     attributes:
+      course:
+        section: Sección
+        format: Formato
+        total_vacancy: Cupos
+        "withdrawal?": Permite retiro
+        "english?": Se dicta en ingles
+        "require_special_approval?": Requiere aprob. especial
+      subject:
+        code: Código
+        credits: Creditos
+        fr_area: Área FG
+        category: Categoria
       schedule_event:
         categories:
-          class: "Clase"
-          assis: "Ayudantía"
-          lab: "Laboratorio"
-          workshop: "Taller"
-          field: "Terreno"
-          practice: "Práctica"
-          tesis: "Tesis"
-          other: "Otro"
+          long_name:
+            class: "Clase"
+            assis: "Ayudantía"
+            lab: "Laboratorio"
+            workshop: "Taller"
+            field: "Terreno"
+            practice: "Práctica"
+            tesis: "Tesis"
+            other: "Otro"
           short_name:
             class: "Clas"
             assis: "Ayd"
