@@ -23,3 +23,10 @@ yarn-debug.log*
 
 # Test files
 .rspec
+
+# Debug
+.byebug*
+
+# Other files
+docs/*
+
