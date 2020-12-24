@@ -4,21 +4,21 @@ User.create!(email: 'admin@example.com', password: '123456') if Rails.env.develo
 
 Term.create! do |t|
   t.year      = 2020
-  t.period    = :tav
+  t.period    = 'tav'
   t.first_day = '2021-01-04'
   t.last_day  = '2021-01-31'
 end
 
 Term.create! do |t|
   t.year      = 2021
-  t.period    = 1
+  t.period    = '1'
   t.first_day = '2021-03-15'
   t.last_day  = '2021-07-09'
 end
 
 Term.create! do |t|
   t.year      = 2021
-  t.period    = 2
+  t.period    = '2'
   t.first_day = '2021-08-09'
   t.last_day  = '2021-12-03'
 end
