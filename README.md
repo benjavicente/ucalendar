@@ -1,5 +1,14 @@
 # UCalendar
 
+:warning: **Este repositorio se encuentra archivado, y contiene lo que fue creado para 
+[SoC 2020-2021](https://benjavicente.github.io/summer-of-code-2020-2021/).**
+
+:link: El proyecto va a ser mantenido en
+[open-source-uc/ucalendar](https://github.com/open-source-uc/ucalendar).
+
+---
+
+
 Implementación en Rails de [uc-nrc-icalendar][uc-nrc-icalendar].
 
 Aplicación web que obtiene los cursos de [Busca Cursos][buscacursosuc]
